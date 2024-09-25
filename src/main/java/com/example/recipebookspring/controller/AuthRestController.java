@@ -34,13 +34,16 @@ public class AuthRestController {
     }
 
     @PostMapping("/generateToken")
-    public String generateToken(@RequestBody UserDto userDto) {
+    public AuthResponse generateToken(@RequestBody UserDto userDto) {
         Authentication authentication = authenticationProvider.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.username(), userDto.password())
         );
-        return tokenService.generateToken(authentication);
+        return new AuthResponse(tokenService.generateToken(authentication));
     }
 
     public record UserDto(String username, String password) {
+    }
+
+    public record AuthResponse(String token) {
     }
 }
