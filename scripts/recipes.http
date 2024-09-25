@@ -1,0 +1,28 @@
+POST http://localhost:8080/recipes
+Content-Type: application/json
+
+{
+  "name": "Delicious Pizza",
+  "description": "A slice of pizza topped with gooey cheese and savory toppings, perfect for any occasion.",
+  "imagePath": "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "ingredients": [
+    {
+      "name": "Pizza dough",
+      "amount": 1
+    },
+    {
+      "name": "Tomato sauce",
+      "amount": 2
+    },
+    {
+      "name": "Mozzarella cheese",
+      "amount": 4
+    }
+  ]
+}
+
+###
+### GET request to example server
+GET http://localhost:8080/recipes
+
+###
