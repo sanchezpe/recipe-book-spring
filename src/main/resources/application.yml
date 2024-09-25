@@ -15,3 +15,6 @@ app:
   key-pair:
     private-key: ${PRIVATE_KEY}
     public-key: ${PUBLIC_KEY}
+server:
+  error:
+    include-stacktrace: never
