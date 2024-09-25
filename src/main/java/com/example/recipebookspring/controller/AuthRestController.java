@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,12 +54,13 @@ public class AuthRestController {
         } catch (AuthenticationException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "INVALID_CREDENTIALS");
         }
-        return new AuthResponse(tokenService.generateToken(authentication));
+        UserDetails user = (UserDetails) authentication.getPrincipal();
+        return new AuthResponse(tokenService.generateToken(authentication), user.getUsername(), TokenService.expiresIn.toMillis());
     }
 
     public record UserDto(String username, String password) {
     }
 
-    public record AuthResponse(String token) {
+    public record AuthResponse(String token, String username, Long expiresIn) {
     }
 }
