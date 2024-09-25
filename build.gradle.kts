@@ -30,6 +30,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring3x:$embedMongoSpring")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocOpenApi")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    testImplementation("org.springframework.security:spring-security-test")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
