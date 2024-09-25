@@ -31,8 +31,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
@@ -111,26 +109,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    KeyPair keyPair() {
-        return generateRsaKey();
-    }
-
-    private static KeyPair generateRsaKey() {
-        KeyPair keyPair;
-        try {
-            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-            keyPairGenerator.initialize(2048);
-            keyPair = keyPairGenerator.generateKeyPair();
-        } catch (Exception ex) {
-            throw new IllegalStateException(ex);
-        }
-        return keyPair;
-    }
-
-    @Bean
     public JWKSource<SecurityContext> jwkSource() {
-        RSAPublicKey publicKey = (RSAPublicKey) keyPair().getPublic();
-        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair().getPrivate();
+        RSAPublicKey publicKey = appConfigProperties.getKeyPair().publicKey();
+        RSAPrivateKey privateKey = appConfigProperties.getKeyPair().privateKey();
         RSAKey rsaKey = new RSAKey.Builder(publicKey)
                 .privateKey(privateKey)
                 .keyID(UUID.randomUUID().toString())
@@ -141,7 +122,7 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        return NimbusJwtDecoder.withPublicKey((RSAPublicKey) keyPair().getPublic()).build();
+        return NimbusJwtDecoder.withPublicKey(appConfigProperties.getKeyPair().publicKey()).build();
     }
 
     @Bean
