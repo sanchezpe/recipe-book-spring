@@ -15,10 +15,11 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .components(new Components()
-                        .addSecuritySchemes("basicAuth", new SecurityScheme()
+                        .addSecuritySchemes("bearerAuth", new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)
-                                .scheme("basic"))
+                                .scheme("bearer")
+                                .bearerFormat("JWT"))
                 )
-                .security(List.of(new SecurityRequirement().addList("basicAuth")));
+                .security(List.of(new SecurityRequirement().addList("bearerAuth")));
     }
 }
