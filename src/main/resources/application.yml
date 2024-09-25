@@ -1,21 +1,12 @@
 spring:
   application:
     name: recipe-book-spring
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      uri: "mongodb://localhost:27017/test"
   datasource:
-    driver-class-name: "com.dbschema.MongoJdbcDriver"
-    url: "jdbc:mongodb://localhost:27017/test"
-  flyway:
-    sql-migration-suffixes: [ ".js" ]
-de:
-  flapdoodle:
-    mongodb:
-      embedded:
-        version: "7.0.12"
+    driver-class-name: "org.h2.Driver"
+    url: "jdbc:h2:mem:testdb"
+  jpa:
+    hibernate:
+      ddl-auto: create
 app:
   cors:
     mappingPathPattern: "/**"
