@@ -26,7 +26,7 @@ public class AuthRestController {
     private final TokenService tokenService;
 
     @PostMapping("/createUser")
-    public void createUser(@RequestBody UserDto userDto) {
+    public AuthResponse createUser(@RequestBody UserDto userDto) {
         try {
             userDetailsService.createUser(
                     User.builder()
@@ -40,6 +40,7 @@ public class AuthRestController {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "USER_EXISTS");
             }
         }
+        return generateToken(userDto);
     }
 
     @PostMapping("/generateToken")
