@@ -1,0 +1,6 @@
+app:
+  cors:
+    mappingPathPattern: "/**"
+    allowed-origins: [ "*" ]
+    allowed-methods: [ "*" ]
+    allowed-headers: [ "*" ]
