@@ -6,7 +6,7 @@ import java.util.List;
 
 @Projection(name = "recipeDto", types = Recipe.class)
 public interface RecipeProjection {
-    String getId();
+    Long getId();
 
     String getName();
 
