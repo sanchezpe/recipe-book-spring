@@ -21,7 +21,7 @@ public class RecipeRestController {
     void batchUpdateRecipes(@RequestBody List<Recipe> recipes) {
         recipeRepository.saveAll(recipes);
 
-        Set<String> toKeepIds = recipes.stream()
+        Set<Long> toKeepIds = recipes.stream()
                 .map(Recipe::getId)
                 .collect(Collectors.toSet());
 
