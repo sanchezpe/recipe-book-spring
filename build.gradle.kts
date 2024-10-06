@@ -23,9 +23,13 @@ repositories {
     mavenCentral()
 }
 
+val embedMongoSpring = "4.16.1"
+val springDocOpenApi = "2.6.0"
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring3x:$embedMongoSpring")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocOpenApi")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
