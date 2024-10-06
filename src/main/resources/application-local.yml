@@ -4,3 +4,11 @@ app:
     allowed-origins: [ "*" ]
     allowed-methods: [ "*" ]
     allowed-headers: [ "*" ]
+  key-pair:
+    private-key: "classpath:keypair/private.pem"
+    public-key: "classpath:keypair/public.pem"
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

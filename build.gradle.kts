@@ -30,6 +30,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring3x:$embedMongoSpring")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocOpenApi")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    implementation("org.flywaydb:flyway-database-mongodb") {
+        exclude(group = "com.github.kornilova203", module = "mongo-jdbc-driver")
+    }
+    implementation(files("$projectDir${File.separator}libs${File.separator}mongo-jdbc-standalone-1.19.jar"))
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

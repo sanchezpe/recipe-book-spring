@@ -6,6 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
 
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.util.List;
 
 @Component
@@ -15,6 +17,9 @@ import java.util.List;
 public class AppConfigProperties {
     @NestedConfigurationProperty
     private CorsProperties cors = new CorsProperties();
+
+    @NestedConfigurationProperty
+    private KeyPairProperties keyPair;
 }
 
 @Getter
@@ -24,4 +29,10 @@ class CorsProperties {
     private List<String> allowedOrigins;
     private List<String> allowedMethods;
     private List<String> allowedHeaders;
+}
+
+record KeyPairProperties(
+        RSAPrivateKey privateKey,
+        RSAPublicKey publicKey
+) {
 }

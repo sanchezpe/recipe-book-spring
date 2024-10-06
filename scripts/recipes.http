@@ -1,5 +1,36 @@
+###
+POST http://localhost:8080/auth/generateToken
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "password"
+}
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+###
+
+###
+POST http://localhost:8080/auth/createUser
+Content-Type: application/json
+
+{
+  "username": "user@mail.com",
+  "password": "password"
+}
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+###
+
 PUT http://localhost:8080/recipes/batch
 Content-Type: application/json
+Authorization: Bearer {{auth_token}}
 
 [
   {
@@ -64,6 +95,7 @@ Content-Type: application/json
 ###
 POST http://localhost:8080/recipes
 Content-Type: application/json
+Authorization: Bearer {{auth_token}}
 
 {
   "name": "Delicious Pizza",
@@ -88,5 +120,6 @@ Content-Type: application/json
 ###
 ### GET request to example server
 GET http://localhost:8080/recipes
+Authorization: Bearer {{auth_token}}
 
 ###
